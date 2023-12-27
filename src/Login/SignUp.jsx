@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import {
   Link,
@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../Provider/AuthProvider";
 import PrimaryButton from "../Components/Button/PrimaryButton";
 import SmallSpinner from "../Components/Spinner/SmallSpinner";
+import { setAuthToken } from "../Api/Auth";
 const Signup = () => {
   const {
     createUser,
@@ -35,25 +36,27 @@ const Signup = () => {
     // image upload imagebb
     const formData = new FormData();
     formData.append("image", image);
-    const url =
-      "https://api.imgbb.com/1/upload?key=354ed7877ebd48e85fe07daa9039ecc9";
-    // console.log(formData);
+    const url ="https://api.imgbb.com/1/upload?key=72c2100047713600040a7c4722e1f616";
+    console.log(formData);
     fetch(url, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
       .then((imageData) => {
-        // console.log(imageData.data.display_url);
+        console.log(imageData.data.display_url);
 
+        
         createUser(email, password)
           .then((result) => {
-            const user = result.user;
+            const loggedUser = result.user;
+            console.log(loggedUser)
             toast.success("SignUp successfull..");
             setLoading(false);
-            // setAuthToken(user);
+            setAuthToken(loggedUser);
             navigate(from, { replace: true });
-            updateUserProfile(name, imageData.data.display_url).then(
+            updateUserProfile(name, imageData.data.display_url)
+            .then(
               verifyEmail().then(() => {
                 toast.success("Please check your email for verification link!");
               })
@@ -70,9 +73,10 @@ const Signup = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        // console.log(result.user);
+        console.log(user)
+        console.log(result.user);
         setLoading(false);
-        // setAuthToken(user);
+        setAuthToken(user);
         navigate(from, { replace: true });
       })
       .catch((err) => {

@@ -1,14 +1,17 @@
-import React, { useContext, useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../Provider/AuthProvider";
 import SmallSpinner from "../Components/Spinner/SmallSpinner";
 import PrimaryButton from "../Components/Button/PrimaryButton";
+import { setAuthToken } from "../Api/Auth";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState(null);
 
-  const { signin, loading, setLoading, resetPassword, signInWithGoogle } = useContext(AuthContext);
+  const { signin, loading, setLoading, resetPassword, signInWithGoogle } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -28,7 +31,7 @@ const Login = () => {
         toast.success("Your successfully signIn");
 
         setLoading(false);
-        // setAuthToken(user)
+        setAuthToken(user)
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -52,14 +55,15 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
+        console.log(user);
         setLoading(false);
-        // setAuthToken(user)
+        setAuthToken(user)
         navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
         toast.error(err.message);
-        setLoading(false);
+        // setLoading(false);
       });
   };
 
@@ -169,7 +173,7 @@ const Login = () => {
           </button>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
-          Don't have an account yet?{" "}
+          Don't have an account yet?
           <Link to="/signup" className="hover:underline text-blue-600">
             Create an Account
           </Link>
