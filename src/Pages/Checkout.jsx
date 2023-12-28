@@ -7,6 +7,7 @@ import CheckoutCart from '../Components/Checkout/CheckoutCart';
 import ReviewHouse from '../Components/Checkout/ReviewHouse';
 import WhosComing from '../Components/Checkout/WhosComing';
 import Payment from '../Components/Checkout/Payment';
+import { saveBooking } from '../Api/bookings';
 const Checkout = () => {
 
       const { user } = useContext(AuthContext);
@@ -43,17 +44,16 @@ const Checkout = () => {
       const [selectedIndex, setSelectedIndex] = useState(0)
     
       const handleBooking = () => {
-        console.log(bookingData)
     
-        // saveBooking(bookingData)
-        //   .then(data => {
-        //     console.log(data)
-        //     toast.success('Booking Successful!')
-        //   })
-        //   .catch(err => {
-        //     console.log(err)
-        //     toast.error(err?.message)
-        //   })
+        saveBooking(bookingData)
+          .then(data => {
+            console.log(data)
+            toast.success('Booking Successful!')
+          })
+          .catch(err => {
+            console.log(err)
+            toast.error(err?.message)
+          })
       }
     
       return (

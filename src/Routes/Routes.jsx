@@ -8,6 +8,11 @@ import Main from "../Layout/Main";
 import Details from "../Pages/Home/Details";
 import SearchResult from "../Pages/SearchResult";
 import Checkout from "../Pages/Checkout";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Welcome from "../Pages/Dashboard/Welcome";
+import PrivateRoute from "./PrivateRoute";
+import MyBookings from "../Components/Dashboard/MyBookings";
+import BecomeAHost from "../Components/Dashboard/BecomeAHost";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
         path: "/service-details",
         element: <Details />,
       },
-    
+
       {
         path: "/search-Result",
         element: <SearchResult />,
@@ -44,6 +49,31 @@ const router = createBrowserRouter([
         path: "/checkout",
         element: <Checkout />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Welcome />,
+      },
+      {
+        path: "my-bookings",
+        element:<PrivateRoute><MyBookings/></PrivateRoute> ,
+      },
+
+      {
+        path: "become-host",
+        element: <PrivateRoute><BecomeAHost/></PrivateRoute>,
+      },
+       
+      
     ],
   },
 ]);
