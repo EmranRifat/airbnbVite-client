@@ -9,7 +9,7 @@ const BecomeHostForm = ({ handleSubmit }) => {
 
   return (
     <div>
-      <div className="flex justify-center items-center pt-16">
+      <div className="flex justify-center items-center pt-10">
         <div className="  rounded-md w-full max-w-md  sm:p-10 bg-gray-100 text-gray-900">
           <form
             onSubmit={handleSubmit}

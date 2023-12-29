@@ -13,6 +13,9 @@ import Welcome from "../Pages/Dashboard/Welcome";
 import PrivateRoute from "./PrivateRoute";
 import MyBookings from "../Components/Dashboard/MyBookings";
 import BecomeAHost from "../Components/Dashboard/BecomeAHost";
+import AllUsers from "../Pages/Dashboard/AllUsers";
+import AllBookings from "../Pages/Dashboard/AllBookings";
+import AddHome from "../Pages/Dashboard/AddHome";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +75,22 @@ const router = createBrowserRouter([
         path: "become-host",
         element: <PrivateRoute><BecomeAHost/></PrivateRoute>,
       },
+      {
+        path: "all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "all-bookings",
+        element: <AllBookings />,
+      },
+      {
+        path: "add-home",
+        element: <AddHome />,
+      },
+      // {
+      //   path: "manage-homes",
+      //   element: <ManageHome />,
+      // },
        
       
     ],

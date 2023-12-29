@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CalendarIcon } from '@heroicons/react/20/solid'
 import React from 'react'
 
