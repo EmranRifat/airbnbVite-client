@@ -11,11 +11,13 @@ import Checkout from "../Pages/Checkout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Welcome from "../Pages/Dashboard/Welcome";
 import PrivateRoute from "./PrivateRoute";
-import MyBookings from "../Components/Dashboard/MyBookings";
 import BecomeAHost from "../Components/Dashboard/BecomeAHost";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import AllBookings from "../Pages/Dashboard/AllBookings";
 import AddHome from "../Pages/Dashboard/AddHome";
+import ManageHome from "../Pages/Dashboard/Manage-Home";
+import AllHome from "../Pages/Dashboard/AllHome";
+import MyBookings from "../Pages/Dashboard/MyBookings";
 
 const router = createBrowserRouter([
   {
@@ -28,9 +30,14 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/all-homes",
+        element: <AllHome />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
+
       {
         path: "/signup",
         element: <Signup />,
@@ -40,8 +47,13 @@ const router = createBrowserRouter([
         element: <ComingSoon />,
       },
       {
-        path: "/service-details",
+        path: "/service-details/:id",
         element: <Details />,
+        loader: ({ params }) => {
+          return fetch(
+            `http://localhost:5000/homes/${params.id}`
+          );
+        },
       },
 
       {
@@ -87,10 +99,14 @@ const router = createBrowserRouter([
         path: "add-home",
         element: <AddHome />,
       },
-      // {
-      //   path: "manage-homes",
-      //   element: <ManageHome />,
-      // },
+      {
+        path: "all-home",
+        element: <AllHome />,
+      },
+      {
+        path: "manage-homes",
+        element: <ManageHome />,
+      },
        
       
     ],

@@ -1,5 +1,4 @@
 import { StarIcon } from '@heroicons/react/24/solid'
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 const SearchCard = () => {

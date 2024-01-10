@@ -35,7 +35,25 @@ export const getBookingsByEmail= async (email) => {
   return bookings;
 };
 
-  
+  // Delete a booking
+export const deleteBooking = async (id) => {
+  const response = await fetch(
+    `http://localhost:5000/booking/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        // authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+      },
+    }
+  );
+  const data = await response.json();
+  return data;
+};
+
+
+
+
 // get All bookings for admin
 export const getBookings = async () => {
   const response = await fetch( 'http://localhost:5000/bookings',

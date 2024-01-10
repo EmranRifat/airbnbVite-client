@@ -6,78 +6,78 @@ import ExpCard from "../../Components/Card/ExpCard";
 import { getAllHome } from "../../Api/Services";
 
 const Home = () => {
-    const [loading,setLoading]=useState(false);
-    const [allExp,setAllExp]=useState([]);
-    const [homes,setHomes]=useState([]);
+  const [loading, setLoading] = useState(false);
+  const [allExp, setAllExp] = useState([]);
+  const [homes, setHomes] = useState([]);
 
-    useEffect(()=>{
+  useEffect(() => {
     //    getting home data from server
-        setLoading(true)
-        getAllHome()
-        .then(data=>setHomes(data))
-        .catch(err=>console.log(err))
- 
-        // fetching expdata from local
-        fetch('expdata.json')
-        .then(data=>data.json())
-        .then(data=>{ 
-          setAllExp(data)
-          setLoading(false)
+    setLoading(true);
+    getAllHome()
+      .then((data) => setHomes(data))
+      .catch((err) => console.log(err));
+
+    // fetching expdata from local
+    fetch("expdata.json")
+      .then((data) => data.json())
+      .then((data) => {
+        setAllExp(data);
+        setLoading(false);
         //   console.log(data);
-        })
-      },[])
+      });
+  }, []);
 
-    return (
-        <>
-       <div
-    className='md:flex justify-center gap-10 px-6 md:px-10 lg:px-20 '>
-   <div className='mt-4 '> 
-   <SearchForm/>
-   </div>
-  
+  return (
+    <>
+      <div className="md:flex justify-center gap-10 px-6 md:px-10 lg:px-20 ">
+        <div className="mt-4 ">
+          <SearchForm />
+        </div>
 
-   <div className='flex-1 shadow-sm'>
-   <div>
-   <div className='flex justify-between px-4 mt-10  '>
-    <p className='text-xl font-bold'>Homes</p>
-    <Link  className='hover:underline mouse-pointer hover:text-blue-500 hover:font-semibold' to="/all-home"><p>See All</p></Link>
-  </div>
-   
+        <div className="flex-1 shadow-sm">
+          <div>
+            <div className="flex justify-between px-4 mt-10  ">
+              <p className="text-xl font-bold">Homes</p>
+              <Link
+                className="hover:underline mouse-pointer hover:text-blue-500 hover:font-semibold"
+                to="/all-homes"
+              >
+                <p>See All</p>
+              </Link>
+            </div>
 
-   <div className='container pb-8 pt-2 mx-auto '>
-   <div className='flex flex-wrap '>
-    {
-     homes.slice(0,3).map((home,i)=>(
-      <HomeCard key={i} home={home}></HomeCard>
+            <div className="container pb-8 pt-2 mx-auto ">
+              <div className="flex flex-wrap ">
+                {homes.slice(0, 3).map((home, i) => (
+                  <HomeCard key={i} home={home}></HomeCard>
+                ))}
+              </div>
+            </div>
+          </div>
 
-     ))}
-   </div>
-   </div>
-   </div>
+          <div>
+            <div className="flex justify-between px-4 ">
+              <p className="text-xl font-bold">Experience</p>
+              <Link
+                className="hover:underline mouse-pointer hover:text-blue-500 hover:font-semibold"
+                to="/coming-soon"
+              >
+                <p>See All</p>
+              </Link>
+            </div>
+          </div>
 
-<div>
-  <div className='flex justify-between px-4 '>
-    <p className='text-xl font-bold'>Experience</p>
-    <Link  className='hover:underline mouse-pointer hover:text-blue-500 hover:font-semibold' to="/coming-soon"><p>See All</p></Link>
-  </div>
-</div>
-
-
-
-
-   <div className='container pb-8 pt-2 mx-auto  shadow-xl '>
-   <div className='flex flex-wrap  '>
-    {
-     allExp.map((exp,i)=>(
-      <ExpCard key={i} exp={exp}></ExpCard>
-
-     ))}
-   </div>
-   </div>
-   </div>
-   </div>    
-        </>
-    );
+          <div className="container pb-8 pt-2 mx-auto  shadow-xl ">
+            <div className="flex flex-wrap  ">
+              {allExp.map((exp, i) => (
+                <ExpCard key={i} exp={exp}></ExpCard>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Home;

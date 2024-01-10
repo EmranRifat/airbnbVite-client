@@ -3,29 +3,7 @@ import HomeDetails from '../../Components/Details/HomeDetails';
 import DetailsCart from '../../Components/Details/DetailsCard';
 
 const Details = () => {
-  // const homeData = useLoaderData()
-  const homeData = {
-    _id: '60ehjhedhjdj3434',
-    location: 'Dhaka, Bangladesh',
-    title: 'Huge Apartment with 4 bedrooms',
-    image: 'https://i.ibb.co/YPXktqs/Home1.jpg',
-    from: '17/11/2022',
-    to: '21/11/2022',
-    host: {
-      name: 'John Doe',
-      image: 'https://i.ibb.co/6JM5VJF/photo-1633332755192-727a05c4013d.jpg',
-      email: 'johndoe@gmail.com',
-    },
-    price: 98,
-    total_guest: 4,
-    bedrooms: 2,
-    bathrooms: 2,
-    ratings: 4.8,
-    reviews: 64,
-  }
-
-
-
+  const homeData = useLoaderData()
   
   return (
     <div>

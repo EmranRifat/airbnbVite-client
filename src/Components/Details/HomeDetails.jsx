@@ -22,7 +22,7 @@ import {
               {homeData?.location}.
             </h3>
             <h3 className='text-gray-400 text-xs tracking-widest title-font mb-1 mt-1'>
-              {homeData?.total_guest} Guests {homeData?.bedrooms} Bedrooms{' '}
+              {homeData?.total_guest} Guests {homeData?.bedrooms} Bedrooms
               {homeData?.bathrooms} bathrooms.
             </h3>
           </div>

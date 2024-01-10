@@ -16,7 +16,6 @@ const Sidebar = ({role,loading}) => {
 
  const [isActive, setActive] = useState('false');
   const { user } = useContext(AuthContext);
-  console.log(role);
   
   const handleToggle = () => {
     setActive(!isActive)
@@ -65,8 +64,10 @@ const Sidebar = ({role,loading}) => {
                 referrerPolicy='no-referrer'
               />
             </Link>
+            <p><small className="text-blue-500 font-semibold">{role}</small></p>
+
             <Link to='/dashboard'>
-              <h4 className='mx-2 mt-2 font-medium text-gray-800  hover:underline'>
+              <h4 className='mx-2 font-medium text-gray-800  hover:underline'>
                 {user?.displayName}
               </h4>
             </Link>

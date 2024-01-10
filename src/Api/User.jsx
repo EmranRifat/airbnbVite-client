@@ -15,7 +15,6 @@ export const hostRequest=async (hostData)=>{
 // get user role
 export const getUserRole = async (email) => {
     const url = `http://localhost:5000/user/${email}`;
-  
     const response = await fetch(url);
     const user = await response.json();
     return user?.role;
@@ -25,10 +24,11 @@ export const getUserRole = async (email) => {
 
   // get all users
   
+
+
   // eslint-disable-next-line no-unused-vars
   export const getAllUsers = async (email) => {
     const url = "http://localhost:5000/users";
-  
     const response = await fetch(url);
     const users = await response.json();
     // console.log(users);

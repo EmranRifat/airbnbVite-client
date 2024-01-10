@@ -1,28 +1,30 @@
 /* eslint-disable react/prop-types */
-import { format } from 'date-fns'
 import  { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import DeleteModal from './Modal/DeleteModal'
+import { deleteBooking } from '../Api/Bookings'
+import { format } from 'date-fns'
 
-const TableRow = ({ booking, fetchBookings }) => {
+const TableRow = ({ booking ,fetchBookings}) => {
   let [isOpen, setIsOpen] = useState(false)
 
 // console.log(booking);
-  // function openModal() {
-  //   setIsOpen(true)
-  // }
-  // function closeModal() {
-  //   setIsOpen(false)
-  // }
-  // const modalHandler = id => {
-  //   console.log(id)
-  //   deleteBooking(id).then(data => {
-  //     console.log(data)
-  //     fetchBookings()
-  //     toast.success('Your booking is Canceled..')
-  //   })
-  //   closeModal()
-  // }
-  // console.log(booking)
+  function openModal() {
+    setIsOpen(true)
+  }
+  function closeModal() {
+    setIsOpen(false)
+  }
+  const modalHandler = id => {
+    console.log(id)
+    deleteBooking(id).then(data => {
+      console.log(data)
+      fetchBookings()
+      toast.success('Your booking is Canceled..')
+    })
+    closeModal()
+  }
+  console.log(booking)
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -31,21 +33,21 @@ const TableRow = ({ booking, fetchBookings }) => {
             <div className='block relative'>
               <img
                 alt='profile'
-                src={booking?.home.image}
+                src={booking?.home?.image}
                 className='mx-auto object-cover rounded h-10 w-15 '
               />
             </div>
           </div>
           <div className='ml-3'>
             <p className='text-gray-900 whitespace-no-wrap'>
-              {booking?.home.title}
+              {booking?.home?.title}
             </p>
           </div>
         </div>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>
-          {booking?.home.location}
+          {booking?.home?.location}
         </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -53,18 +55,18 @@ const TableRow = ({ booking, fetchBookings }) => {
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>
-          {/* {format(new Date(booking?.home.from), 'P')} */}
+        {/* {format(new Date(booking?.home?.from), 'P')} */}
         </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>
           {' '}
-          {/* {format(new Date(booking?.home.to), 'P')} */}
+          {/* {format(new Date(booking?.home?.to), 'P')} */}
         </p>
       </td>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <span
-          onClick={''}
+          onClick={openModal}
           className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
         >
           <span
@@ -73,12 +75,12 @@ const TableRow = ({ booking, fetchBookings }) => {
           ></span>
           <span className='relative'>Cancel</span>
         </span>
-        {/* <DeleteModal
+         <DeleteModal
           isOpen={isOpen}
           closeModal={closeModal}
           modalHandler={modalHandler}
           id={booking._id}
-        /> */}
+        /> 
       </td>
     </tr>
   )

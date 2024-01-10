@@ -1,30 +1,28 @@
-/* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
-import PrimaryButton from "../Button/PrimaryButton";
-import TableRow from "../TableRow";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { getBookingsByEmail } from "../../Api/bookings";
-
-const MyBookings = () => {
-  const {user}=useContext(AuthContext);
-  const [bookings,setBookings]=useState([]);
-
-  useEffect(()=>{
-    getBookingsByEmail(user?.email)
-    .then(data=>setBookings(data)
-    )
-    .catch(err=>{
-      console.log(err)
-    })
-
-  },[user])
+import  { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../Provider/AuthProvider'
+import { getHostHomes } from '../../Api/Services'
 
 
+
+const ManageHome = () => {
   
+  const { user } = useContext(AuthContext)
+  const [homes, setHomes] = useState([])
+// console.log(homes);
+
+  const fetchHomes = () => 
+  getHostHomes(user?.email)
+  .then(data => 
+    setHomes(data))
+
+  useEffect(() => {
+    fetchHomes()
+  }, [user])
+
+  // console.log(homes)
+
+
   return (
-    <>
-     
     <div className='container mx-auto px-4 sm:px-8'>
       <div className='py-8'>
         <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
@@ -66,40 +64,33 @@ const MyBookings = () => {
                     scope='col'
                     className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                   >
-                    Action
+                    Delete
+                  </th>
+                  <th
+                    scope='col'
+                    className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                  >
+                    Update
                   </th>
                 </tr>
               </thead>
               <tbody>
-                 {/* {bookings &&
-                  bookings.map(booking => (
-                    <TableRow
-                      key={booking._id}
-                      booking={booking}
-                      fetchBookings={fetchBookings}
+              {homes &&
+                  homes.map(home => (
+                    <HomeDataRow
+                      key={home?._id}
+                      home={home}
+                      fetchHomes={fetchHomes}
                     />
-                  ))}  */}
-                  <TableRow/>
+                  ))}
+               
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+  )
+}
 
- 
-      <div className='h-screen text-gray-600 gap-5 flex flex-col justify-center items-center pb-16 text-xl lg:text-3xl'>
-        You haven't booked booked any home yet.
-        <Link to='/allhome'>
-          <PrimaryButton classes='px-6 py-2 text-medium font-semibold rounded-full'>
-            Browse Homes
-          </PrimaryButton>
-        </Link>
-      </div>
-
-  
-</>
-  );
-};
-
-export default MyBookings;
+export default ManageHome
