@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         element: <Details />,
         loader: ({ params }) => {
           return fetch(
-            `http://localhost:5000/homes/${params.id}`
+            `http://localhost:5000/home/${params.id}`
           );
         },
       },

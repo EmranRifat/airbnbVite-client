@@ -16,20 +16,20 @@ export const addHome = async (homeData) => {
 };
 
 // /get filtered homes for hosts
-export const getHostHomes = async (email) => {
-  const response = await fetch(
-    `http://localhost:5000/home/${email}`,
+export const getHostHomes = async email => {
+  const response = await fetch(`http://localhost:5000/homes/${email}`,
     {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+        'content-type': 'application/json',
+        // authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
       },
     }
-  );
-  const data = await response.json();
-  return data;
-};
+  )
+  const data = await response.json()
+  return data
+}
+
 
 
 

@@ -1,5 +1,6 @@
 import  { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Provider/AuthProvider'
+import HomeDataRow from '../../Components/HomeDataRow'
 import { getHostHomes } from '../../Api/Services'
 
 
@@ -8,7 +9,7 @@ const ManageHome = () => {
   
   const { user } = useContext(AuthContext)
   const [homes, setHomes] = useState([])
-// console.log(homes);
+console.log(11,homes);
 
   const fetchHomes = () => 
   getHostHomes(user?.email)

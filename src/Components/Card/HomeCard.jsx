@@ -3,7 +3,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const HomeCard = ({ home }) => {
-  
+  // console.log(home)
   return (
     <div className="lg:w-1/3 md:w-1/2 p-4 w-full shadow-lg">
       <Link
@@ -26,13 +26,14 @@ const HomeCard = ({ home }) => {
           {home?.title}
         </h2>
 
-        <p className="mt-1">{home?.price}$ per person</p>
+        <p className="mt-1"><span className="font-semibold">{home?.price}</span>$ per person</p>
         <div className="flex mt-1">
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
           <StarIcon className="h3 w-3 text-green-500" />
-          <StarIcon className="h3 w-3 text-green-500" /> <span>64</span>
+          <StarIcon className="h3 w-3 text-green-500" /> 
+           <span>9.5</span>
         </div>
       </div>
 

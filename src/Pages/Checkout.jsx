@@ -1,60 +1,47 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Fragment, useContext, useState } from "react";
 import { Tab } from "@headlessui/react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { AuthContext } from "../Provider/AuthProvider";
 import CheckoutCart from "../Components/Checkout/CheckoutCart";
 import ReviewHouse from "../Components/Checkout/ReviewHouse";
 import WhosComing from "../Components/Checkout/WhosComing";
-import Payment from "../Components/Checkout/Payment";
+// import Payment from "../Components/Checkout/Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
-import { saveBooking } from "../Api/Bookings";
+// import { saveBooking } from "../Api/Bookings";
+import CheckOutForm from "../Components/Form/CheckOutForm";
 const Checkout = () => {
   const { state } = useLocation();
   const checkoutData = state?.homeData;
   const { user } = useContext(AuthContext);
-console.log(11,checkoutData)
-  // const homeData = {
-  //   _id: '60ehjhedhjdj3434',
-  //   location: 'Dhaka, Bangladesh',
-  //   title: 'Huge Apartment with 4 bedrooms',
-  //   image: 'https://i.ibb.co/YPXktqs/Home1.jpg',
-  //   from: '17/11/2022',
-  //   to: '21/11/2022',
-  //   host: {
-  //     name: 'John Doe',
-  //     image: 'https://i.ibb.co/6JM5VJF/photo-1633332755192-727a05c4013d.jpg',
-  //     email: 'johndoe@gmail.com',
-  //   },
-  //   price: 98,
-  //   total_guest: 4,
-  //   bedrooms: 2,
-  //   bathrooms: 2,
-  //   ratings: 4.8,
-  //   reviews: 64,
-  // }
+  const stripePromise = loadStripe('pk_test_51N5QVYDX9IxjuKwgwS9MxJ3nGWiFfiIm9jaEIQmZq4XutYJJvpImADkiNiGiSkziKbEPYbDMBDvhKnWIuF1x3LlZ00gcdT1Nr0')
 
   const [bookingData, setBookingData] = useState({
-    homeId: checkoutData._id,
+    homeId: checkoutData?._id,
     hostEmail: checkoutData?.host?.email,
+    title:checkoutData?.title,
+    image:checkoutData?.image,
     message: "",
-    totalPrice: parseFloat(checkoutData.price) + 31,
+    price: parseFloat(checkoutData.price) + 31,
     guestEmail: user?.email,
+    home: checkoutData,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleBooking = () => {
-    saveBooking(bookingData)
-      .then((data) => {
-        console.log(data);
-        toast.success("Booking Successful!");
-      }) 
-      .catch((err) => {
-        console.log(err);
-        toast.error(err?.message);
-      });
-  };
+  // const handleBooking = () => {
+  //   saveBooking(bookingData)
+  //     .then((data) => {
+  //       console.log(data);
+  //       toast.success("Booking Successful!");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error(err?.message);
+  //     });
+  // };
 
   return (
     <div className="md:flex gap-5 items-start justify-between sm:mx-10 md:mx-20 px-4 lg:mx-40 py-4">
@@ -127,6 +114,7 @@ console.log(11,checkoutData)
             </div>
           </Tab.List>
 
+
           <Tab.Panels>
             <Tab.Panel>
               <ReviewHouse
@@ -147,8 +135,12 @@ console.log(11,checkoutData)
               />
             </Tab.Panel>
             <Tab.Panel>
-              {/* Payment Comp */}
-              <Payment handleBooking={handleBooking} />
+               {/* Payment Component  */}
+              {/* <Payment handleBooking={handleBooking} /> */}
+             
+              <Elements stripe={stripePromise} >
+                <CheckOutForm bookingData={bookingData} />
+              </Elements>
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

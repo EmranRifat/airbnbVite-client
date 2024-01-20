@@ -3,7 +3,8 @@ import HomeDetails from '../../Components/Details/HomeDetails';
 import DetailsCart from '../../Components/Details/DetailsCard';
 
 const Details = () => {
-  const homeData = useLoaderData()
+  const homeData = useLoaderData();
+  console.log(homeData)
   
   return (
     <div>
@@ -13,7 +14,7 @@ const Details = () => {
           <img
             alt='feature'
             className='object-cover object-start h-full w-full'
-            src={homeData.image}
+            src={homeData?.image}
           />
         </div>
         <div className='w-1/2 h-full overflow-hidden'>

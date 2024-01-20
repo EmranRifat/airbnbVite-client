@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { getBookings } from "../../Api/Bookings";
+import TableRow from "../../Components/TableRow";
 
 const AllBookings = () => {
   const { user } = useContext(AuthContext);
@@ -7,14 +9,14 @@ const AllBookings = () => {
   const [loading, setLoading] = useState(true);
 
   
-//   useEffect(() => {
-//     setLoading(true);
-//     getAllBookings(user?.email).then((data) => {
-//       console.log(data);
-//       setBookings(data);
-//       setLoading(false);
-//     });
-//   }, [user]);
+  useEffect(() => {
+    setLoading(true);
+    getBookings()
+    .then((data) => {
+      setBookings(data);
+      setLoading(false);
+    });
+  }, [user]);
 
   return (
     <div className="container mx-auto px-4 sm:px-8">
@@ -66,7 +68,7 @@ const AllBookings = () => {
               {
                bookings&&
                bookings.map(booking=>(
-                <AllBookingBody
+                <TableRow
                   booking={booking}
                   key={booking._id}
                 />

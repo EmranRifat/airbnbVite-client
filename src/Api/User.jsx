@@ -27,7 +27,7 @@ export const getUserRole = async (email) => {
 
 
   // eslint-disable-next-line no-unused-vars
-  export const getAllUsers = async (email) => {
+  export const getAllUsers = async () => {
     const url = "http://localhost:5000/users";
     const response = await fetch(url);
     const users = await response.json();

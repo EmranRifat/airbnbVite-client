@@ -60,7 +60,7 @@ const Home = () => {
               <p className="text-xl font-bold">Experience</p>
               <Link
                 className="hover:underline mouse-pointer hover:text-blue-500 hover:font-semibold"
-                to="/coming-soon"
+                to="/all-homes"
               >
                 <p>See All</p>
               </Link>
