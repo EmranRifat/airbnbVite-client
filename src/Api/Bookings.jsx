@@ -27,7 +27,7 @@ export const getBookingsByEmail= async (email) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+        authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
       },
     }
   );
@@ -46,7 +46,7 @@ export const deleteBooking = async (id) => {
       headers: {
         "content-type": "application/json",
 
-        // authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+        authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
       },
     }
   );
@@ -64,7 +64,7 @@ export const getBookings = async () => {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+        authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
       },
     }
   );
@@ -80,7 +80,7 @@ export const getPaymentIntent=async price=>{
       method: "POST",
       headers: {
         "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
+        authorization: `Bearer ${localStorage.getItem("aircnc-token")}`,
       },
       body: JSON.stringify({price}),
     }

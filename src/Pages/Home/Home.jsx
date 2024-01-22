@@ -9,7 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [allExp, setAllExp] = useState([]);
   const [homes, setHomes] = useState([]);
-
+// console.log(homes)
   useEffect(() => {
     //    getting home data from server
     setLoading(true);
@@ -48,8 +48,8 @@ const Home = () => {
 
             <div className="container pb-8 pt-2 mx-auto ">
               <div className="flex flex-wrap ">
-                {homes.slice(0, 3).map((home, i) => (
-                  <HomeCard key={i} home={home}></HomeCard>
+                {Array.isArray(homes) &&homes.slice(0, 3).map((home, id) => (
+                  <HomeCard key={id} home={home}></HomeCard>
                 ))}
               </div>
             </div>

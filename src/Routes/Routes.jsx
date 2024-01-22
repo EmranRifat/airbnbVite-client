@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home/Home";
 import Login from "../Login/Login";
 import Signup from "../Login/SignUp";
 import ComingSoon from "../Shared/CommingSoon";
@@ -18,6 +17,9 @@ import AddHome from "../Pages/Dashboard/AddHome";
 import ManageHome from "../Pages/Dashboard/Manage-Home";
 import AllHome from "../Pages/Dashboard/AllHome";
 import MyBookings from "../Pages/Dashboard/MyBookings";
+import Home from "../Pages/Home/Home";
+import AdminRoute from "./AdminRoute";
+import HostRoute from "./Hostroute";
 
 const router = createBrowserRouter([
   {
@@ -89,23 +91,23 @@ const router = createBrowserRouter([
       },
       {
         path: "all-users",
-        element: <AllUsers />,
+        element:<AdminRoute><AllUsers /></AdminRoute>
       },
       {
         path: "all-bookings",
-        element: <AllBookings />,
+        element:<AdminRoute><AllBookings /></AdminRoute> 
       },
       {
         path: "add-home",
-        element: <AddHome />,
+        element: <HostRoute><AddHome /></HostRoute>
       },
       {
         path: "all-home",
-        element: <AllHome />,
+        element: <AllHome />
       },
       {
         path: "manage-homes",
-        element: <ManageHome />,
+        element:<HostRoute><ManageHome /></HostRoute>
       },
        
       

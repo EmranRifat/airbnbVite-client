@@ -8,7 +8,7 @@ import { format } from "date-fns";
 const TableRow = ({ booking, fetchBookings }) => {
   let [isOpen, setIsOpen] = useState(false);
 
-  // console.log(booking);
+  console.log(booking);
   function openModal() {
     setIsOpen(true);
   }
@@ -27,9 +27,14 @@ const TableRow = ({ booking, fetchBookings }) => {
   // console.log(booking);
   return (
     <tr>
+      {/* <p className="text-gray-900 ml-5 mt-10 whitespace-no-wrap">{index}</p> */}
+
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+
         <div className="flex items-center">
+
           <div className="flex-shrink-0">
+
             <div className="block relative">
               <img
                 alt="profile"
@@ -48,6 +53,11 @@ const TableRow = ({ booking, fetchBookings }) => {
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">
           {booking?.home?.location}
+        </p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">
+          {booking?.guestEmail}
         </p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -79,7 +89,7 @@ const TableRow = ({ booking, fetchBookings }) => {
           isOpen={isOpen}
           closeModal={closeModal}
           modalHandler={modalHandler}
-          id={booking._id}
+          id={booking?._id}
         />
       </td>
     </tr>

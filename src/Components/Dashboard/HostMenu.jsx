@@ -1,4 +1,4 @@
-import React from 'react';
+import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/20/solid';
 import { FingerPrintIcon, UserPlusIcon } from '@heroicons/react/24/solid'
 import { NavLink } from 'react-router-dom'
 const HostMenu = () => {
@@ -28,6 +28,18 @@ const HostMenu = () => {
           <UserPlusIcon className='w-5 h-5' />
   
           <span className='mx-4 font-medium'>Add Home</span>
+        </NavLink>
+        <NavLink
+          to='my-bookings'
+          className={({ isActive }) =>
+            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+              isActive
+            }`
+          }
+        >
+          <ShoppingCartIcon className='w-5 h-5' />
+  
+          <span className='mx-4 font-medium'>My Bookings</span>
         </NavLink>
       </>
     );

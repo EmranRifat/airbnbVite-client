@@ -15,7 +15,7 @@ const AddHome = () => {
   const [uploadText,setUploadText]=useState('Upload Image')
   const [arrivalDate, setArrivalDate] = useState(new Date())
   const [departureDate, setDepartureDate] = useState(
-    new Date(arrivalDate.getTime() + 24 * 60 * 60 * 1000)
+  new Date(arrivalDate.getTime() + 24 * 60 * 60 * 1000)
   )
 
   const handleSubmit = event => {
@@ -69,7 +69,8 @@ const AddHome = () => {
 
 
   const handleImageChange=image=>{
-    setPreview(window.URL.createObjectURL(image))
+
+   setPreview(window.URL.createObjectURL(image))
     setUploadText(image.name)
   }
 

@@ -3,7 +3,7 @@ import { getAllUsers, makeHost } from "../../Api/User";
 import SmallSpinner from "../../Components/Spinner/SmallSpinner";
 
 const AllUsers = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
 
   const handleRequest = (user) => {
@@ -36,7 +36,9 @@ const AllUsers = () => {
       <div className="py-8">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-            <table className="min-w-full leading-normal">
+          {
+            loading?(<div className="text-center text-gray-600 py-5" >  Loading users...</div>):(
+ <table className="min-w-full leading-normal">
               <thead>
                 <tr>
                   <th
@@ -94,6 +96,9 @@ const AllUsers = () => {
                   ))}
               </tbody>
             </table>
+            )
+          }
+           
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import DetailsCart from '../../Components/Details/DetailsCard';
 
 const Details = () => {
   const homeData = useLoaderData();
-  console.log(homeData)
+  // console.log(homeData)
   
   return (
     <div>

@@ -4,7 +4,8 @@ import { format } from 'date-fns'
 import { Fragment, useState } from 'react'
 import toast from 'react-hot-toast'
 import UpdateServiceForm from '../Form/UpdateServiceForm'
-// import { imageUpload } from '../../api/imageUpload'
+import { updateHome } from '../../Api/Services'
+import { getImageUrl } from '../../Api/imageUpload'
 // import UpdateServiceForm from '../Form/UpdateServiceForm'
 // import { updateHome } from '../../Api/Services'
 // import UpdateServiceForm from '../Form/UpdateServiceForm'
@@ -24,15 +25,18 @@ const EditModal = ({ setIsEditModalOpen, isOpen, home, fetchHomes }) => {
   // eslint-disable-next-line no-unused-vars
   const handleImageUpdate = image => {
     setLoading(true)
-    // imageUpload(image)
-      .then(res => {
-        // setHomeData({ ...homeData, image: res.data.display_url })
+    getImageUrl(image)
+    .then(data=>{
+      console.log(data)
+           setHomeData({ ...homeData, image:data })
         setLoading(false)
-      })
-      .catch(err => {
+    })
+    .catch(err => {
         console.log(err)
         setLoading(false)
       })
+    
+      
   }
 
   const handleSubmit = event => {
@@ -41,18 +45,18 @@ const EditModal = ({ setIsEditModalOpen, isOpen, home, fetchHomes }) => {
     const updatedData = Object.assign({}, { ...homeData })
     delete updatedData._id
     setLoading(true)
-    // updateHome(updatedData)
-    //   .then(data => {
-    //     console.log(data)
-    //     toast.success('Home info updated')
-    //     setLoading(false)
-    //     fetchHomes()
-    //     setIsEditModalOpen(false)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     setLoading(false)
-    //   })
+    updateHome(updatedData)
+      .then(data => {
+        console.log(data)
+        toast.success('Home info updated')
+        setLoading(false)
+        fetchHomes()
+        setIsEditModalOpen(false)
+      })
+      .catch(err => {
+        console.log(err)
+        setLoading(false)
+      })
   }
 
   return (

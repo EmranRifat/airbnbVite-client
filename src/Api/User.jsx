@@ -15,7 +15,13 @@ export const hostRequest=async (hostData)=>{
 // get user role
 export const getUserRole = async (email) => {
     const url = `http://localhost:5000/user/${email}`;
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+      },
+    })
     const user = await response.json();
     return user?.role;
   };
@@ -29,14 +35,33 @@ export const getUserRole = async (email) => {
   // eslint-disable-next-line no-unused-vars
   export const getAllUsers = async () => {
     const url = "http://localhost:5000/users";
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+      },
+    });
     const users = await response.json();
     // console.log(users);
     return users;
   };
   
 
-
+  export const getRole = async email => {
+    const response = await fetch(
+      `http://localhost:5000/user/${email}`,
+      {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+        },
+      }
+    )
+    const user = await response.json()
+    return user?.role;
+  }
   
 export const makeHost = async (user) => {
   delete user._id;
@@ -46,6 +71,8 @@ export const makeHost = async (user) => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+
       },
       body: JSON.stringify({ ...user, role: "host" }),
     }
@@ -54,3 +81,4 @@ export const makeHost = async (user) => {
 
   return users;
 };
+

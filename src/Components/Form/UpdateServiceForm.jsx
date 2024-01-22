@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { CalendarIcon } from '@heroicons/react/20/solid'
-import React from 'react'
 import DatePicker from 'react-datepicker'
 import SmallSpinner from '../Spinner/SmallSpinner'
 
@@ -15,7 +14,7 @@ const UpdateServiceForm = ({
   handleImageUpdate,
   loading,
 }) => {
-  console.log(homeData)
+  // console.log(homeData)
   return (
     <>
       <div className='flex justify-center mt-6'>

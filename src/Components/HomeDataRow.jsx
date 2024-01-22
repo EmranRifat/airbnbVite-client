@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 
 import DeleteModal from './Modal/DeleteModal'
 import EditModal from './Modal/EditModal'
+import { deleteHome } from '../Api/Services'
 
 const HomeDataRow = ({ home, fetchHomes }) => {
   let [isOpen, setIsOpen] = useState(false)
@@ -16,17 +17,19 @@ const HomeDataRow = ({ home, fetchHomes }) => {
   function closeModal() {
     setIsOpen(false)
   }
-//   const modalHandler = id => {
-//     console.log(id)
-//     deleteHome(id)
-//       .then(data => {
-//         console.log(data)
-//         fetchHomes()
-//         toast.success('Home deleted')
-//       })
-//       .catch(err => console.log(err))
-//     closeModal()
-//   }
+
+
+  const modalHandler = (id) => {
+    // console.log(id)
+    deleteHome(id)
+      .then(data => {
+        console.log(data)
+        fetchHomes();
+        toast.success('Home deleted successfully..!')
+      })
+      // .catch(err => console.log(err))
+    closeModal()
+  }
   return (
     <tr>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
@@ -75,7 +78,7 @@ const HomeDataRow = ({ home, fetchHomes }) => {
         <DeleteModal
           isOpen={isOpen}
           closeModal={closeModal}
-          modalHandler={''}
+          modalHandler={modalHandler}
           id={home._id}
         />
       </td>

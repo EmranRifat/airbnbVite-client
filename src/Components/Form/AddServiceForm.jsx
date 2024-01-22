@@ -3,7 +3,7 @@ import { CalendarIcon } from '@heroicons/react/20/solid';
 import DatePicker from 'react-datepicker'
 import SmallSpinner from '../Spinner/SmallSpinner'
 
-const AddServiceForm = ({handleSubmit,arrivalDate, setArrivalDate,departureDate,setDepartureDate,loading,handleImageChange, preview, uploadText}) => {
+const  AddServiceForm = ({handleSubmit,arrivalDate, setArrivalDate,departureDate,setDepartureDate,loading,handleImageChange, preview, uploadText}) => {
 
 
 

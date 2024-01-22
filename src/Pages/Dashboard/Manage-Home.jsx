@@ -9,7 +9,7 @@ const ManageHome = () => {
   
   const { user } = useContext(AuthContext)
   const [homes, setHomes] = useState([])
-console.log(11,homes);
+// console.log(11,homes);
 
   const fetchHomes = () => 
   getHostHomes(user?.email)

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 export const addHome = async (homeData) => {
   const response = await fetch(
@@ -32,9 +33,6 @@ export const getHostHomes = async email => {
 
 
 
-
-
-
 // get all homes
 export const getAllHome = async () => {
     const res = await fetch("http://localhost:5000/homes");
@@ -42,13 +40,43 @@ export const getAllHome = async () => {
     return data;
   };
 
+  // delete a home 
+ export  const deleteHome=async (id)=>{
+    const response=await fetch(`http://localhost:5000/home/${id}`,{
+      method:"DELETE",
+      headers:{
+        "content-type":"application/json",
+       authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+      }
+    })
+    const result=await response.json();
+    return result;
+  }
+
+
+  // update a home
+export const updateHome = async homeData => {
+  const response = await fetch('http://localhost:5000/homes', {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('aircnc-token')}`,
+    },
+    body: JSON.stringify(homeData),
+  })
+
+  const data = await response.json()
+  return data
+}
+
+
 
 
   // Search Result
 export const getSearchResult = async (location, from, to, total_guest) => {
   const response = await fetch(
     `http://localhost:5000/search-result?location=${location}&from=${from}&to=${to}&total_guest=${total_guest}`
-  );
-  const data = await response.json();
-  return data;
-};
+  )
+  const data = await response.json()
+  return data
+}
