@@ -22,6 +22,7 @@ const AllHome = () => {
     <>
       {loading ? (
         <Spinner />
+
       ) : (
         <section className='text-gray-600 body-font'>
           <div className='container pb-8 pt-2 mx-auto'>

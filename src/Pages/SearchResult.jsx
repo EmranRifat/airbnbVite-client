@@ -35,7 +35,7 @@ const SearchResult = () => {
               </h2>
             </div>
             {homes&& homes.map(
-                (home, i) => !home?.booked && <SearchCard key={i} home={home} />
+                (home, i) => <SearchCard key={i} home={home} />
               )}
           </div>
           <div className='lg:w-1/2 w-full h-screen mb-10 lg:mb-0 overflow-hidden'>

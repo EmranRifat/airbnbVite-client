@@ -52,9 +52,7 @@ const router = createBrowserRouter([
         path: "/service-details/:id",
         element: <Details />,
         loader: ({ params }) => {
-          return fetch(
-            `http://localhost:5000/home/${params.id}`
-          );
+          return fetch(`/api/home/${params.id}`);
         },
       },
 
@@ -82,35 +80,57 @@ const router = createBrowserRouter([
       },
       {
         path: "my-bookings",
-        element:<PrivateRoute><MyBookings/></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "become-host",
-        element: <PrivateRoute><BecomeAHost/></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BecomeAHost />
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-users",
-        element:<AdminRoute><AllUsers /></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "all-bookings",
-        element:<AdminRoute><AllBookings /></AdminRoute> 
+        element: (
+          <AdminRoute>
+            <AllBookings />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-home",
-        element: <HostRoute><AddHome /></HostRoute>
+        element: (
+          <HostRoute>
+            <AddHome />
+          </HostRoute>
+        ),
       },
       {
         path: "all-home",
-        element: <AllHome />
+        element: <AllHome />,
       },
       {
         path: "manage-homes",
-        element:<HostRoute><ManageHome /></HostRoute>
+        element: (
+          <HostRoute>
+            <ManageHome />
+          </HostRoute>
+        ),
       },
-       
-      
     ],
   },
 ]);
